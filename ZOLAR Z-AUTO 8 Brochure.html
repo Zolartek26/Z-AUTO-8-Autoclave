@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOLAR Z-AUTO 8 - Veterinary Autoclave</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background: #ffffff;
+        }
+
+        /* Top Navigation Bar */
+        .top-nav {
+            background: white;
+            padding: 12px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-nav .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: #0066cc;
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+
+        .top-nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .top-nav-links a {
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .top-nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #0066cc, #0052a3);
+            transition: width 0.3s ease;
+        }
+
+        .top-nav-links a:hover {
+            color: #0066cc;
+        }
+
+        .top-nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        header {
+            background: linear-gradient(to right, #f0f6ff 0%, #e8f2ff 100%);
+            padding: 60px 40px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #0066cc;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #003d82;
+            line-height: 1.2;
+        }
+
+        .hero-description {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .highlight-box {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 6px;
+            border: 2px solid #0066cc;
+            font-size: 12px;
+            font-weight: 600;
+            color: #0066cc;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .highlight-box:hover {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,102,204,0.3);
+            transform: scale(1.05);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        button {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,102,204,0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0052a3 0%, #003d82 100%);
+            box-shadow: 0 6px 20px rgba(0,102,204,0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #0066cc;
+            border: 2px solid #0066cc;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #0066cc;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,102,204,0.3);
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            background: white;
+            padding: 60px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #003d82;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 20px;
+        }
+
+        /* Features Grid - With Icons */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            border-left: 5px solid #0066cc;
+            background: #f8fafb;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 8px 25px rgba(0,102,204,0.15);
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, #f0f6ff 0%, #ffffff 100%);
+            border-left-color: #0052a3;
+        }
+
+        .feature-icon {
+            width: 100%;
+            height: 120px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon img {
+            transform: scale(1.1);
+        }
+
+        .feature-number {
+            font-size: 32px;
+            font-weight: 300;
+            color: #0066cc;
+            margin-bottom: 12px;
+            opacity: 0.3;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            color: #003d82;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* Specs Section - Two Column Layout */
+        .specs-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,102,204,0.08);
+        }
+
+        .specs-table thead {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+        }
+
+        .specs-table thead th {
+            padding: 16px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .specs-table tbody tr {
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .specs-table tbody tr:hover {
+            background: linear-gradient(to right, #f0f6ff 0%, #ffffff 100%);
+            box-shadow: inset 0 0 10px rgba(0,102,204,0.05);
+        }
+
+        .specs-table tbody tr:nth-child(even) {
+            background: #f8fbff;
+        }
+
+        .specs-table tbody tr:nth-child(even):hover {
+            background: linear-gradient(to right, #e8f2ff 0%, #f8fbff 100%);
+        }
+
+        .specs-table td {
+            padding: 14px 16px;
+            font-size: 14px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .specs-table td:first-child {
+            font-weight: 700;
+            color: #0066cc;
+            width: 45%;
+            padding-right: 20px;
+        }
+
+        .specs-table td:last-child {
+            color: #555;
+        }
+
+        .specs-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Benefits Section */
+        .benefits-list {
+            list-style: none;
+            margin-top: 0;
+        }
+
+        .benefits-list li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .benefits-list li:hover {
+            padding-left: 40px;
+            color: #0066cc;
+        }
+
+        .benefits-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #0066cc;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Certifications */
+        .certifications {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .cert-box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cert-box:hover {
+            box-shadow: 0 8px 20px rgba(0,102,204,0.12);
+            transform: translateY(-3px);
+            border-color: #0066cc;
+            background: linear-gradient(135deg, #f0f6ff 0%, #ffffff 100%);
+        }
+
+        .cert-title {
+            font-weight: 700;
+            color: #0066cc;
+            margin-bottom: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .cert-box:hover .cert-title {
+            color: #0052a3;
+        }
+
+        .cert-description {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            color: #666;
+            text-align: left;
+            padding: 40px 40px;
+            margin-top: 0;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        footer p {
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        footer strong {
+            color: #333;
+            font-weight: 700;
+        }
+
+        footer a {
+            color: #0066cc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #0052a3;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            header {
+                flex-direction: column;
+                padding: 40px 20px;
+                gap: 30px;
+            }
+
+            .highlights {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .specs-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .certifications {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                padding: 0 20px;
+            }
+
+            .top-nav {
+                padding: 15px 20px;
+            }
+
+            .top-nav-links {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="logo"><img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/329a25f5-428e-4bca-968c-e25865f767b3" alt="ZOLAR" style="height: 35px; width: auto;"></div>
+        <div class="top-nav-links">
+            <a href="https://www.zolartek.com" target="_blank">ZolarTek.com</a>
+            <a href="#features">Features</a>
+            <a href="#specs">Specifications</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="hero-content">
+            <div class="hero-subtitle">Z-AUTO 8 • VETERINARY</div>
+            <h1>8L Class B Super Fast Autoclave</h1>
+            <p class="hero-description">Z-AUTO 8 delivers rapid Class B sterilization in a compact 8-liter format for busy veterinary practices that need fast instrument turnaround without compromising safety and sterilization quality.</p>
+            <div class="highlights">
+                <div class="highlight-box">8L CHAMBER</div>
+                <div class="highlight-box">CLASS B</div>
+                <div class="highlight-box">8-MIN CYCLE</div>
+                <div class="highlight-box">COLOR LCD</div>
+            </div>
+            <div class="cta-buttons">
+                <button class="btn-primary">Request a Demo</button>
+                <button class="btn-secondary">View Technical Specs</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/d1f19193-ab17-4cd6-8610-58e2618cf3ce" alt="ZOLAR Z-AUTO 8">
+        </div>
+    </header>
+
+    <main>
+        <!-- Features Section -->
+        <section id="features">
+            <div class="section-label">SIX KEY FEATURES</div>
+            <h2>Engineered for fast, safe veterinary sterilization</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-number">01</div>
+                    <h3>Super Fast Sterilization</h3>
+                    <p>Naked (unwrapped) program completes in just 8 minutes. Delivers the speed you need without compromising sterilization quality or reliability.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-number">02</div>
+                    <h3>One-Time Extrusion Chamber</h3>
+                    <p>SS 304 stainless steel chamber manufactured through one-piece extrusion for enhanced security and durability. Ensures maximum safety and long-term reliability.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-number">03</div>
+                    <h3>Rectangle & Fully Loaded</h3>
+                    <p>Scientific rectangular chamber design maximizes internal space. Accommodates 3 layers of instrument racks plus planting boxes without wasting any space.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-number">04</div>
+                    <h3>Colorful LCD Display</h3>
+                    <p>High-resolution color LCD screen displays program characteristics, parameters and real-time cycle progress with crystal clarity. Simple 4-button operation.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-number">05</div>
+                    <h3>Water Filling One Time</h3>
+                    <p>Stainless steel open-top water tank with 4L capacity. Minimal water consumption at 0.2L per cycle eliminates frequent refilling and reduces operating costs.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-number">06</div>
+                    <h3>Little Size, Full Configuration</h3>
+                    <p>Compact portable design with comprehensive features: built-in printer, large water tank, powerful fan and optional USB interface for data management.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Specifications -->
+        <section id="specs">
+            <div class="section-label">TECHNICAL DATA</div>
+            <h2>Z-AUTO 8 specifications</h2>
+            <div class="specs-container">
+                <div>
+                    <table class="specs-table">
+                        <thead>
+                            <tr>
+                                <th>Specification</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Model</td>
+                            <td>Z-AUTO 8</td>
+                        </tr>
+                        <tr>
+                            <td>Capacity</td>
+                            <td>8 Liters</td>
+                        </tr>
+                        <tr>
+                            <td>Power Output</td>
+                            <td>1800 W</td>
+                        </tr>
+                        <tr>
+                            <td>Voltage</td>
+                            <td>AC 220V / 110V ±10%</td>
+                        </tr>
+                        <tr>
+                            <td>Frequency</td>
+                            <td>50/60 Hz ±1 Hz</td>
+                        </tr>
+                        <tr>
+                            <td>Chamber Dimensions</td>
+                            <td>310 × 240 × 150 mm</td>
+                        </tr>
+                        <tr>
+                            <td>Exterior Dimensions</td>
+                            <td>640 × 500 × 280 mm</td>
+                        </tr>
+                        <tr>
+                            <td>Net Weight</td>
+                            <td>41 kg (90 lbs)</td>
+                        </tr>
+                        <tr>
+                            <td>Gross Weight</td>
+                            <td>54 kg (119 lbs)</td>
+                        </tr>
+                        <tr>
+                            <td>Water Tank</td>
+                            <td>4L stainless steel | 0.2L per cycle</td>
+                        </tr>
+                        <tr>
+                            <td>Sterilization Temp</td>
+                            <td>121°C / 134°C selectable</td>
+                        </tr>
+                        <tr>
+                            <td>Cycle Time</td>
+                            <td>~8 minutes (unwrapped)</td>
+                        </tr>
+                        <tr>
+                            <td>Data Recording</td>
+                            <td>Built-in printer + optional USB</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <div style="margin-bottom: 40px;">
+                        <h3 style="font-size: 18px; color: #003d82; font-weight: 700; margin-bottom: 20px;">Clinical benefits</h3>
+                        <ul class="benefits-list">
+                            <li>Rapid instrument turnaround for busy veterinary surgeries and exam rooms.</li>
+                            <li>Compact footprint allows easy placement on counters or mobile carts.</li>
+                            <li>Integrated documentation via built-in printer for compliance records.</li>
+                            <li>Low water and power consumption keeps operating costs down.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 18px; color: #003d82; font-weight: 700; margin-bottom: 20px;">Certifications & safety</h3>
+                        <div class="certifications" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                            <div class="cert-box">
+                                <div class="cert-title">CE Certified</div>
+                                <div class="cert-description">TÜV Rheinland<br>European standards compliance and validation.</div>
+                            </div>
+                            <div class="cert-box">
+                                <div class="cert-title">ISO 13485:2016</div>
+                                <div class="cert-description">Manufactured under certified medical device quality system.</div>
+                            </div>
+                            <div class="cert-box">
+                                <div class="cert-title">CLASS B Autoclave</div>
+                                <div class="cert-description">Multi-layer safety, pressure and temperature alarm monitoring.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <p><strong>ZOLAR Technology &amp; MFG • ZolarTek.com</strong></p>
+        <p>Veterinary Autoclave &amp; Sterilization Solutions.<br>For quotes, distribution and technical support, visit <a href="https://www.zolartek.com" target="_blank">www.zolartek.com</a></p>
+    </footer>
+
+    <script>
+        // Add smooth scrolling and button interactivity
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseover', function() {
+                this.style.transition = 'all 0.3s ease';
+            });
+        });
+
+        // Add scroll animation to feature cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Add fadeInUp animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
